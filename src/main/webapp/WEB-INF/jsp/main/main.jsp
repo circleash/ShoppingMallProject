@@ -16,24 +16,50 @@
 </head>
 <body>
 	<div id="wrap">
-		<div id="header">
-			<div>
-			열공필템
+		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		<section>
+			<div class="d-flex justify-content-center">
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg">
 			</div>
-			<div>
-				<table>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>2</td>
-							<td>3</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		
-		
+		<div>
+		Best Items
 		</div>
+		<hr>
+		<div class="d-flex justify-content-between">
+			<div>
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg" class="best-items">
+				<div>
+				1위 필기구
+				</div>
+			</div>
+			<div>
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg" class="best-items">
+				<div>
+				2위 필기구
+				</div>
+			</div>
+			<div>
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg" class="best-items">
+				<div>
+				3위 필기구
+				</div>
+			</div>
+			<div>
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg" class="best-items">
+				<div>
+				4위 필기구
+				</div>
+			</div>
+			<div>
+				<img src="https://cdn.pixabay.com/photo/2014/07/01/08/52/spiral-notebook-381032_960_720.jpg" class="best-items">
+				<div>
+				5위 필기구
+				</div>
+			</div>
+		</div>
+		</section>
+		<hr>
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 
 </body>

@@ -15,7 +15,25 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
-	
+	<div id="wrap">
+		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		<section>
+			<div class="d-flex align-items-center justify-content-center mt-5">
+				<div class="login-box">
+					<h1 class="text-center">로그인</h1>
+					<form id="loginForm">
+					<input type="text" id="loginIdInput" class="form-control" placeholder="아이디를 입력하세요">
+					<input type="password" id="passwordInput" class="form-control mt-3" placeholder="비밀번호를 입력하세요">
+					<input type="submit" id="loginBtn" class="btn btn-success btn-block mt-3" value="로그인">
+					</form>
+					<div class="text-right">
+					<a href="/user/signup_view">회원가입</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+	</div>
 
 </body>
 </html>

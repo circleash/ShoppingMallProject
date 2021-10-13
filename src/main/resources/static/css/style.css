@@ -4,7 +4,32 @@
 	margin:auto;
 }
 
+
+#top-table {
+	width:600px;
+	height:70px;
+}
+
+#footer-left {
+	width:400px;
+	height:300px;
+}
+
+#footer-right {
+	width:800px;
+	height:300px;
+}
+
 header {
 	height:70px;
 	
+}
+
+.best-items {
+	width:150px;
+	height:150px;
+}
+
+.login-box {
+	width:400px;
 }
