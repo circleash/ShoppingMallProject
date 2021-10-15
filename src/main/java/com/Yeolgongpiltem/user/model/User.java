@@ -8,6 +8,7 @@ public class User {
 	private String loginId;
 	private String password;
 	private String userName;
+	private String userAddress;
 	private String userPhoneNumber;
 	private String email;
 	private Date createdAt;
@@ -36,6 +37,12 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getUserAddress() {
+		return userAddress;
+	}
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
 	public String getUserPhoneNumber() {
 		return userPhoneNumber;
 	}
@@ -60,7 +67,7 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+	
 	
 	
 }

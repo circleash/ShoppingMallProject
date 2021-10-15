@@ -29,9 +29,9 @@
 						<div class="text-success d-none" id="noneDuplicateDiv"><small>사용 가능한 id입니다.</small></div>
 						<input type="password" id="passwordInput" name="password" class="form-control mt-3" placeholder="비밀번호를 입력하세요">
 						<input type="password" id="passwordConfirmInput" name="passwordConfirm" class="form-control mt-3" placeholder="비밀번호 확인">
-						<input type="text" id="nameInput" name="name" class="form-control mt-3" placeholder="이름">
-						<input type="text" id="addressInput" name="address" class="form-control mt-3" placeholder="주소">
-						<input type="text" id="phoneNumberInput" name="phoneNumber" class="form-control mt-3" placeholder="연락처(핸드폰번호)">
+						<input type="text" id="userNameInput" name="userName" class="form-control mt-3" placeholder="이름">
+						<input type="text" id="userAddressInput" name="userAddress" class="form-control mt-3" placeholder="주소">
+						<input type="text" id="userPhoneNumberInput" name="userPhoneNumber" class="form-control mt-3" placeholder="연락처(핸드폰번호)">
 						<input type="text" id="emailInput" name="email" class="form-control mt-3" placeholder="이메일주소">
 						<button type="submit" id="signupBtn" class="btn btn-success btn-block mt-3">가입하기</button>
 					</form>
@@ -39,5 +39,129 @@
 			</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	<script>
+	$(document).ready(function() {
+		// 중복체크확인변수
+		var isChecked = false;
+		//중복 url 여부
+		var isDuplicate = true;
+		
+		//아이디에 입력이 있을 경우 다시 초기화
+		$("#loginIdInput").on("input", function() {
+			$("#duplicateDiv").addClass("d-none");
+			$("#noneDuplicateDiv").addClass("d-none");
+			isChecked = false;
+			isDuplicate = true;
+			
+		});
+		
+		$("#signupForm").on("submit", function(e) {
+			e.preventDefault();
+			
+			var loginId = $("#loginIdInput").val();
+			var password = $("#passwordInput").val();
+			var passwordConfirm = $("#passwordConfirmInput").val();
+			var userName = $("#userNameInput").val();
+			var userAddress = $("#userAddressInput").val();
+			var userPhoneNumber = $("#userPhoneNumberInput").val();
+			var email = $("#emailInput").val();
+			
+			if(loginId == null || loginId == "") {
+				alert("아이디를 입력하세요");
+				return ;
+			}
+			
+			if(password == null || password == "") {
+				alert("비밀번호를 입력하세요");
+				return;
+			}
+			
+			if(password != passwordConfirm) {
+				alert("비밀번호가 일치하지 않습니다.");
+				return ;
+			}
+			
+			if(userName == null || userName == "") {
+				alert("이름을 입력하세요");
+				return;
+			}
+			
+			if(userAddress == null || userAddress == "") {
+				alert("주소를 입력하세요");
+				return;
+			}
+			
+			if(userPhoneNumber == null || userPhoneNumber == "") {
+				alert("연락처를 입력하세요");
+				return;
+			}
+			
+			if(email == null || email == "") {
+				alert("이메일 주소를 입력하세요");
+				return ;
+			}
+			
+			if(isChecked == false) {
+				alert("중복체크를 진행해 주세요!")
+				return;
+			}
+			
+			//이름이 중복된 경우
+			if(isDuplicate == true) {
+				alert("중복된 id는 입력할 수 없습니다");
+				return;
+			}
+			
+			
+			$.ajax({
+				type:"post",
+				url:"/user/sign_up",
+				data:{"loginId":loginId, "password":password, "userName":userName, "userAddress":userAddress, "userPhoneNumber":userPhoneNumber, "email":email},
+				success:function(data) {
+					if(data.result == "success") {
+						location.href="/user/signin_view";
+					} else {
+						alert("회원가입 실패");
+					}
+				},
+				error:function(e) {
+					alert("error");
+				}
+				
+			});
+		});
+		$("#isDuplicateBtn").on("click", function() {
+			//id에 대한 validation
+			var loginId = $("#loginIdInput").val();
+			
+			if(loginId == null || loginId =="") {
+				alert("id를 입력하세요");
+				return;
+			}
+		
+		$.ajax({
+			type:"get",
+			url:"/user/is_id_duplication",
+			data:{"loginId":loginId},
+			success:function(data) {
+				isChecked = true;
+				if(data.isDuplication) {
+					
+					isDuplicate = true;
+					$("#duplicateDiv").removeClass("d-none");
+					$("#noneDuplicateDiv").addClass("d-none");
+				} else {
+					isDuplicate = false;
+					$("#noneDuplicateDiv").removeClass("d-none");
+					$("#duplicateDiv").addClass("d-none");
+				}
+			},
+			error:function(e) {
+				alert("error");
+			}
+			})
+		})
+	});
+	</script>
 </body>
 </html>

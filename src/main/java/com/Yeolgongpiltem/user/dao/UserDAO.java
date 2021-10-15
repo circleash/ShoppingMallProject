@@ -3,6 +3,8 @@ package com.Yeolgongpiltem.user.dao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.Yeolgongpiltem.user.model.User;
+
 @Repository
 public interface UserDAO {
 	
@@ -12,5 +14,11 @@ public interface UserDAO {
 			, @Param("userAddress") String userAddress
 			, @Param("userPhoneNumber") String userPhoneNumber
 			, @Param("email") String email);
+	
+	public int selectCountByLoginId(@Param("loginId") String loginId);
+	
+	public User selectUserByLoginIdPassword(
+			@Param("loginId") String loginId
+			, @Param("password") String password);
 
 }

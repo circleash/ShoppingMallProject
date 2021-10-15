@@ -34,6 +34,54 @@
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<script>
+	$(document).ready(function() {
+		$("#loginForm").on("submit", function(e) {
+			e.preventDefault();
+			
+			var loginId = $("#loginIdInput").val();
+			var password = $("#passwordInput").val();
+			
+			if(loginId == null || loginId == "") {
+				alert("아이디를 입력해주세요");
+				return;
+			}
+			
+			if(password == null || password == "") {
+				alert("비밀번호를 입력해주세요");
+				return;
+			}
+			
+			
+			$.ajax({
+				type:"post",
+				url:"/user/sign_in",
+				data:{"loginId":loginId, "password":password},
+				success:function(data) {
+					if(data.result == "success") {
+						location.href="/main_view"
+					} else {
+						alert("아이디 비밀번호를 확인해주세요.");
+					}
+					
+				},
+				error:function(e) {
+					alert("error")
+				}
+				
+				
+			});
+		});
+		
+		
+		
+	});
+	
+	
+	
+	</script>
+	
 
 </body>
 </html>

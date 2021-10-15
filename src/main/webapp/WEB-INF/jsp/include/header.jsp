@@ -11,7 +11,12 @@
 						<tbody>
 							<tr class="top-tr">
 								<td class="d-flex justify-content-between">
-								<div>로그인/회원가입</div>
+								<c:if test="${not empty userName }">
+								${userName } <a href="/user/sign_out"> [로그아웃] </a>
+								</c:if>
+								<c:if test="${empty userName }">
+								<a href="/user/signin_view">로그인/회원가입</a>
+								</c:if>
 								<div>ABOUT</div>
 								<div>매장안내</div>
 								<div>FAQ</div>
@@ -21,9 +26,9 @@
 							</tr>
 							<tr class="bottom-tr">
 								<td class="d-flex justify-content-between">
-								<div>NEW</div>
-								<div>노트</div>
-								<div>필기구</div>
+								<a href="/product/new">NEW</a>
+								<a href="/product/note">노트</a>
+								<a href="/product/pen">필기구</a>
 								<div>다이어리</div>
 								<div>ACC</div>
 							</tr>
@@ -32,3 +37,4 @@
 				</div>
 			</div>
 		</header>
+		

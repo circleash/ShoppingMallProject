@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.Yeolgongpiltem.common.EncryptUtils;
 import com.Yeolgongpiltem.user.dao.UserDAO;
+import com.Yeolgongpiltem.user.model.User;
 
 @Service
 public class UserBO {
@@ -22,6 +23,19 @@ public class UserBO {
 		
 		return userDAO.insertUser(loginId, encryptPassword, userName, userAddress, userPhoneNumber, email);
 		
+	}
+	public boolean isDuplication(String loginId) {
+		int count = userDAO.selectCountByLoginId(loginId);
+		if(count >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public User getUser(String loginId, String password) {
+		String encryptPassword = EncryptUtils.md5(password);
+		return userDAO.selectUserByLoginIdPassword(loginId, encryptPassword);
 	}
 
 }
